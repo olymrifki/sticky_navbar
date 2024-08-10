@@ -50,26 +50,28 @@
             illum expedita quisquam earum? Necessitatibus illo tempore sapiente commodi quae, qui quasi odit fugiat
             impedit mollitia eveniet maiores?
         </p>
-        <div class="tabs px-3 min-h-36 py-5 min-w-full flex bg-blue-300 justify-around">
-            <div class="w-5/12 bg-slate-400">aaa</div>
-            <div class="w-5/12 bg-lime-200 rounded-lg">
-                <div class="flex">
-                    <div class="w-1/3 border-solid border-b border-lime-100 flex justify-center">1</div>
-                    <div class="w-1/3 border-x border-b border-solid border-lime-100 flex justify-center">2</div>
-                    <div class="w-1/3 border-solid border-b border-lime-100 flex justify-center">3</div>
+    </div>
+    <div class="tabs my-3 px-3 min-h-56 py-5 min-w-full flex bg-blue-300 justify-around">
+        <div class="w-5/12 rounded-lg bg-slate-200 flex justify-center items-center">some picture here :)</div>
+        <div class="w-5/12 bg-lime-200 flex flex-col rounded-lg">
+            <div class="flex">
+                <div id="tab_1"
+                    class="hover:cursor-pointer hover:bg-lime-100 rounded-tl-lg w-1/3 border-solid border-b border-lime-100 flex justify-center">
+                    1
                 </div>
-                <div class="p-2 text-xs font-extralight">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tempore explicabo veritatis
-                    dignissimos
-                    accusantium nostrum voluptatum qui labore, natus mollitia voluptatem. Ipsa ducimus eos saepe
-                    expedita ex
-                    dolorum
-                    assumenda
-                    numquam!
-                </div>
-
+                <div id="tab_2"
+                    class="hover:cursor-pointer hover:bg-lime-100 w-1/3 border-x border-b border-solid border-lime-100 flex justify-center">
+                    2</div>
+                <div id="tab_3"
+                    class="hover:cursor-pointer hover:bg-lime-100 rounded-tr-lg w-1/3 border-solid border-b border-lime-100 flex justify-center">
+                    3</div>
             </div>
+            <div id="tab_info" class="flex-1 p-2 h-auto rounded-b-lg text-xs font-extralight">
+            </div>
+
         </div>
+    </div>
+    <div class=" py-5 px-5 flex flex-col text-xs gap-5">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tempore explicabo veritatis dignissimos
             accusantium nostrum voluptatum qui labore, natus mollitia voluptatem. Ipsa ducimus eos saepe expedita ex
             laboriosam optio omnis amet, qui veritatis unde aut tempora. Fuga et sint autem amet, modi, veniam dolorum
@@ -97,6 +99,44 @@
             navbar.className = `sticky ${pageYOffset > window.innerHeight ? "bg-slate-500" : "bg-slate-300"} ${pageYOffset > window.innerHeight ? "text-gray-100" : "text-gray-900"} top-0 py-1.5 px-5 flex flex-row justify-between`;
         }
 
+
+        const ids = ["tab_1", "tab_2", "tab_3"]
+
+        const active_colors = { "tab_1": "bg-red-200", "tab_2": "bg-green-200", "tab_3": "bg-yellow-200" }
+
+        const tab_infos = {
+            "tab_1": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla tempore explicabo veritatis dignissimos accusantium nostrum voluptatum qui labore, natus mollitia voluptatem.",
+            "tab_2": " Ipsa ducimus eos saepe expedita ex laboriosam optio omnis amet, qui veritatis unde aut tempora. Fuga et sint autem amet, modi, veniam dolorum placeat blanditiis rerum doloribus aliquid voluptas.",
+            "tab_3": " Alias voluptatum id vel minima voluptates assumenda accusantium consectetur culpa necessitatibus sint cum perspiciatis laboriosam sequi praesentium, eos numquam! Eum, officia fugiat reprehenderit eligendi itaque similique!"
+        }
+
+        const tab_info = document.getElementById("tab_info")
+
+        activate("tab_1")
+
+        ids.forEach((id) => {
+            const tab = document.getElementById(id)
+            tab.addEventListener("click", () => {
+                activate(id)
+            })
+        })
+
+        function activate(active_id) {
+            if (!ids.includes(active_id)) return;
+            ids.forEach((id) => {
+                if (active_id == id) {
+                    document.getElementById(active_id).classList.add(active_colors[id])
+                    tab_info.classList.add(active_colors[id])
+                    tab_info.innerHTML = tab_infos[id]
+                } else {
+                    document.getElementById(id).classList.remove(active_colors[id])
+                    tab_info.classList.remove(active_colors[id])
+                }
+            })
+        }
+        tab_1.addEventListener("onclick", () => {
+
+        })
     </script>
 </body>
 
